@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>Welcome to {clientName}'s status page!</h1>
+      <h1>Welcome to {clientName}&apos;s status page!</h1>
       <p>This is the public status page for <strong>{clientName}</strong>.</p>
     </div>
   )
