@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { supabase } from '../lib/supabaseClient'
 import { useRouter } from 'next/router'
+import { supabase } from '../lib/supabaseClient'
+import Link from 'next/link'
+import Head from 'next/head'
 
 export default function Login() {
   const router = useRouter()
@@ -29,36 +31,44 @@ export default function Login() {
   }
 
   return (
-    <div style={{ maxWidth: 400, margin: '5rem auto', fontFamily: 'sans-serif' }}>
-      <h2 style={{ marginBottom: '1rem' }}>Log in to StatusPond</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '0.5rem', padding: '0.5rem' }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '1rem', padding: '0.5rem' }}
-        />
-        <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.5rem' }}>
-          {loading ? 'Logging in…' : 'Log In'}
-        </button>
-      </form>
+    <>
+      <Head>
+        <title>Login – StatusPond</title>
+      </Head>
 
-      {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+      <div style={{ maxWidth: 400, margin: '5rem auto', fontFamily: 'sans-serif' }}>
+        <h2 style={{ marginBottom: '1rem' }}>Log in to StatusPond</h2>
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{ width: '100%', marginBottom: '0.5rem', padding: '0.5rem' }}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ width: '100%', marginBottom: '1rem', padding: '0.5rem' }}
+          />
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.5rem' }}>
+            {loading ? 'Logging in…' : 'Log In'}
+          </button>
+        </form>
 
-      {/* Link to Signup Page */}
-      <p style={{ marginTop: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>
-        Don’t have an account? <a href="/signup">Sign up here</a>
-      </p>
-    </div>
+        {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+
+        <p style={{ marginTop: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>
+          Don’t have an account?{' '}
+          <Link href="/signup">
+            Sign up here
+          </Link>
+        </p>
+      </div>
+    </>
   )
 }

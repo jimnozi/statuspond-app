@@ -5,7 +5,6 @@ export default function Document() {
     <Html>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>StatusPond - Client Status</title>
         <meta name="theme-color" content="#f8f9fb" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Live system status for your services" />
