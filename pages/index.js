@@ -70,7 +70,29 @@ export default function Home() {
         </p>
       </header>
 
-      {/* Sticky status bar could go here */}
+      {/* Overall Status Summary */}
+      <div style={{
+        background: '#fff',
+        padding: '1rem 1.5rem',
+        borderRadius: '10px',
+        borderLeft: liveServices.some(service => service.status === 'down') ? '6px solid red' :
+                    liveServices.some(service => service.status === 'slow') ? '6px solid orange' :
+                    '6px solid green',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+        marginBottom: '2rem',
+        maxWidth: '700px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'center',
+      }}>
+        <strong>
+          {liveServices.some(service => service.status === 'down')
+            ? '🔴 Some services are currently down'
+            : liveServices.some(service => service.status === 'slow')
+            ? '🟡 Some services are experiencing slowness'
+            : '🟢 All systems operational'}
+        </strong>
+      </div>
 
       {/* Service List */}
       <section style={{ maxWidth: '700px', margin: '0 auto' }}>
