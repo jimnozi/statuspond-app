@@ -11,12 +11,14 @@ export default function Dashboard() {
   useEffect(() => {
     const getUser = async () => {
       const { data, error } = await supabase.auth.getUser()
+
       if (error || !data?.user) {
         router.push('/login')
       } else {
         setUser(data.user)
-        setLoading(false)
       }
+
+      setLoading(false)
     }
 
     getUser()
@@ -33,7 +35,7 @@ export default function Dashboard() {
       <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
         <h1>Welcome to your dashboard</h1>
         <p>You’re logged in as: <strong>{user.email}</strong></p>
-        <p>🚀 Soon you'll see your monitors and status pages here.</p>
+        <p>🚀 Soon you&apos;ll see your monitors and status pages here.</p>
       </div>
     </>
   )
