@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabaseClient'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 export default function Signup() {
   const router = useRouter()
@@ -8,6 +9,13 @@ export default function Signup() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  // Redirect if accessed from subdomain
+  useEffect(() => {
+    if (window.location.hostname !== 'statuspond.com') {
+      window.location.href = 'https://statuspond.com/signup'
+    }
+  }, [])
 
   const handleSignup = async (e) => {
     e.preventDefault()
@@ -29,30 +37,36 @@ export default function Signup() {
   }
 
   return (
-    <div style={{ maxWidth: 400, margin: '5rem auto', fontFamily: 'sans-serif' }}>
-      <h2 style={{ marginBottom: '1rem' }}>Sign Up to StatusPond</h2>
-      <form onSubmit={handleSignup}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '0.5rem', padding: '0.5rem' }}
-        />
-        <input
-          type="password"
-          placeholder="Create Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '1rem', padding: '0.5rem' }}
-        />
-        <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.5rem' }}>
-          {loading ? 'Signing up…' : 'Create Account'}
-        </button>
-      </form>
-      {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
-    </div>
+    <>
+      <Head>
+        <title>Sign Up – StatusPond</title>
+      </Head>
+
+      <div style={{ maxWidth: 400, margin: '5rem auto', fontFamily: 'sans-serif' }}>
+        <h2 style={{ marginBottom: '1rem' }}>Sign Up to StatusPond</h2>
+        <form onSubmit={handleSignup}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{ width: '100%', marginBottom: '0.5rem', padding: '0.5rem' }}
+          />
+          <input
+            type="password"
+            placeholder="Create Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ width: '100%', marginBottom: '1rem', padding: '0.5rem' }}
+          />
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.5rem' }}>
+            {loading ? 'Signing up…' : 'Create Account'}
+          </button>
+        </form>
+        {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+      </div>
+    </>
   )
 }

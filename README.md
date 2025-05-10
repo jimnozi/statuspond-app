@@ -11,3 +11,19 @@ This repository contains starter templates and final code for [Learn Next.js](ht
 The code for the example apps you build using Next.js Learn live in this repository and we'd be grateful for your contributions.
 
 The course curriculum is currently not open sourced, but you can [create an issue](https://github.com/vercel/next-learn/issues/new) if you find a mistake.
+
+
+https://dash.cloudflare.com/612c030b6373049f0bb350b7f26d78cc/statuspond.com
+
+https://vercel.com/babatundes-projects-74a7f050/statuspond-app-wlko
+
+
+https://supabase.com/dashboard/sign-in?returnTo=%2Fprojects
+
+
+http://localhost:3000/login
+
+
+
+
+

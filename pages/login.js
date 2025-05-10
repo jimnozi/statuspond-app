@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { supabase } from '../lib/supabaseClient'
 import Link from 'next/link'
@@ -10,6 +10,13 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  // Redirect if accessed from subdomain
+  useEffect(() => {
+    if (window.location.hostname !== 'statuspond.com') {
+      window.location.href = 'https://statuspond.com/login'
+    }
+  }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -64,9 +71,7 @@ export default function Login() {
 
         <p style={{ marginTop: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>
           Don’t have an account?{' '}
-          <Link href="/signup">
-            Sign up here
-          </Link>
+          <Link href="/signup">Sign up here</Link>
         </p>
       </div>
     </>
