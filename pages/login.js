@@ -11,12 +11,13 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // ✅ Prevent access from subdomains (only in production)
+  // ✅ Redirect only if on subdomain in production
   useEffect(() => {
     const isProduction = process.env.NODE_ENV === 'production'
     const host = window.location.hostname
+    const path = window.location.pathname
 
-    if (isProduction && host !== 'statuspond.com') {
+    if (isProduction && host !== 'statuspond.com' && path === '/login') {
       window.location.href = 'https://statuspond.com/login'
     }
   }, [])
@@ -26,10 +27,7 @@ export default function Login() {
     setLoading(true)
     setError('')
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
       setError(error.message)
