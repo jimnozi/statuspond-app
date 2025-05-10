@@ -20,10 +20,18 @@ https://vercel.com/babatundes-projects-74a7f050/statuspond-app-wlko
 
 https://supabase.com/dashboard/sign-in?returnTo=%2Fprojects
 
+https://zohomail.tools/#domainDetails/statuspond.com/CNAME
+
+
+
+
+
 
 http://localhost:3000/login
 
 https://statuspond.com/login
+
+https://mailadmin.zoho.eu/cpanel/home.do#dashboard
 
 
 
