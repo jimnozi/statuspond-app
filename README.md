@@ -23,6 +23,8 @@ https://supabase.com/dashboard/sign-in?returnTo=%2Fprojects
 
 http://localhost:3000/login
 
+https://statuspond.com/login
+
 
 
 
