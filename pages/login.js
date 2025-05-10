@@ -11,9 +11,12 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // Redirect if accessed from subdomain
+  // ✅ Prevent access from subdomains (only in production)
   useEffect(() => {
-    if (window.location.hostname !== 'statuspond.com') {
+    const isProduction = process.env.NODE_ENV === 'production'
+    const host = window.location.hostname
+
+    if (isProduction && host !== 'statuspond.com') {
       window.location.href = 'https://statuspond.com/login'
     }
   }, [])
@@ -70,7 +73,7 @@ export default function Login() {
         {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
 
         <p style={{ marginTop: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>
-          Don’t have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/signup">Sign up here</Link>
         </p>
       </div>
